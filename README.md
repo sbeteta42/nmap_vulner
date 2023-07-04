@@ -8,7 +8,7 @@
 Le script NSE utilise des informations sur les services connus pour fournir des données sur les vulnérabilités. Notez qu'il est déjà inclus dans la bibliothèque standard nmap NSE.
 ![Result example](example.png)
 
-## Dependencies:
+## Dependances:
     nmap libraries:
         http
         json
