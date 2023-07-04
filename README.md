@@ -1,7 +1,7 @@
 # nmap_vulners
 
 [![Current Release](https://img.shields.io/github/release/vulnersCom/nmap-vulners.svg "Current Release")](https://github.com/vulnersCom/nmap-vulners/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/vulnersCom/nmap-vulners/total.svg "Downloads")](https://github.com/vulnersCom/nmap-vulners/releases) [![PayPal](https://img.shields.io/badge/donate-PayPal-green.svg)](https://paypal.me/videns)
+[![Downloads](https://img.shields.io/github/downloads/vulnersCom/nmap-vulners/total.svg "Downloads")](https://github.com/vulnersCom/nmap-vulners/releases)
 
 ## Description
 
@@ -26,6 +26,7 @@ Gardez à l'esprit que le script dépend de la disponibilité d'informations sur
          pour Windows, il peut s'agir de C:\Program Files (x86)\Nmap\scripts
      copiez le script fourni (vulners.nse) dans ce répertoire
      exécutez *nmap --script-updatedb* pour mettre à jour la base de données de script nmap
+
 ## Usage
   Utilisez-le aussi simplement que possible :
          nmap -sV --script vulners [--script-args mincvss=<val_arg>] <cible>
@@ -34,13 +35,13 @@ Gardez à l'esprit que le script dépend de la disponibilité d'informations sur
 
 ## Description
 
-NSE script scans HTTP responses and identifies CPEs for the mentioned software. It can therefore boost the efficiency of the main vulners script.
+Le script NSE analyse les réponses HTTP et identifie les CPE pour le logiciel mentionné. Il peut donc augmenter l'efficacité du script principal des vulnérabilités.
 
 ![Result example](simple_regex_example.png)
-Or with the paths:
+Ou avec les chemins :
 ![Result example](paths_regex_example.png)
 
-## Dependencies
+## Dependances
     nmap libraries:
         http
         json
@@ -50,39 +51,38 @@ Or with the paths:
         table
 
 ## Installation
-    locate where nmap is located on your system
-        for *nix system it might be  ~/.nmap/ or $NMAPDIR
-        for Mac it might be /usr/local/Cellar/nmap/<version>/share/nmap/
-        for Windows it might be C:\Program Files (x86)\Nmap\
-    copy the provided script (http-vulners-regex.nse) into <nmap_dir>/scripts/
-    copy the provided json with the regexes to <nmap_dir>/nselib/data/
-    copy the provided txt file with the default paths to <nmap_dir>/nselib/data/
-        note that you can specify your own file via command line
-    run *nmap --script-updatedb* to update the nmap script DB 
+   localiser où se trouve nmap sur votre système
+         pour le système *nix, cela peut être ~/.nmap/ ou $NMAPDIR
+         pour Mac, cela pourrait être /usr/local/Cellar/nmap/<version>/share/nmap/
+         pour Windows, il peut s'agir de C:\Program Files (x86)\Nmap\
+     copiez le script fourni (http-vulners-regex.nse) dans <nmap_dir>/scripts/
+     copiez le json fourni avec les regex dans <nmap_dir>/nselib/data/
+     copiez le fichier txt fourni avec les chemins par défaut vers <nmap_dir>/nselib/data/
+         notez que vous pouvez spécifier votre propre fichier via la ligne de commande
+     exécutez *nmap --script-updatedb* pour mettre à jour la base de données de script nmap
 
 ## Usage
-    As a usual NSE script:
-        nmap --script http-vulners-regex.nse [--script-args paths={"/"}] <target> 
-
+    Comme un script NSE habituel :
+         nmap --script http-vulners-regex.nse [--script-args paths={"/"}] <cible>
 
 # vulners_enterprise
 
 ## Description 
-This is basically the good old faithfull nmap-vulners from above with one exception: it requires an API_KEY to work. 
+Il s'agit essentiellement des bons vieux fidèles nmap-vulners d'en haut, à une exception près : il nécessite une API_KEY pour fonctionner.
 
-You can either specify it on the CLI using the 'api_key' script argument, set it into an envirotnment variable VULNERS_API_KEY, or store it in a file readable by the user running nmap. In this case you must specify the absolute path to the file using the 'api_key_file' script argument.
-
-## Usage
-    As a usual NSE script:
-        nmap -sV --script vulners_enterprise [--script-args mincvss=<arg_val>,api_key=<api_key>,api_key_file=<absolute_path>,api_host=http://my_host.com] <target>
-        
+Vous pouvez soit le spécifier sur la CLI à l'aide de l'argument de script 'api_key', le définir dans une variable d'environnement VULNERS_API_KEY ou le stocker dans un fichier lisible par l'utilisateur exécutant nmap. Dans ce cas, vous devez spécifier le chemin absolu vers le fichier à l'aide de l'argument de script 'api_key_file'.
+#
+# Usage
+   Comme un script NSE habituel :
+         nmap -sV --script vulners_enterprise [--script-args mincvss=<arg_val>,api_key=<api_key>,api_key_file=<absolute_path>,api_host=http://my_host.com] <target>
+         
 ### NSE Arguments
 
-**vulners_enterprise.mincvss** Limit CVEs shown to those with this CVSS score or greater.
+**vulners_enterprise.mincvss** Limitez les CVE affichés à ceux qui ont ce score CVSS ou plus.
 
-**vulners_enterprise.api_key** API token to be used in the requests
+**vulners_enterprise.api_key** API Token à utiliser dans les requêtes
 
-**vulners_enterprise.api_key_file** Absolute path to the file with a single line containing the API token
+**vulners_enterprise.api_key_file** Achemin absolu vers le fichier avec une seule ligne contenant le token API
 
-**vulners_enterprise.api_host** URL to vulners API without the leading slash. Defaults to https://vulners.com
+**vulners_enterprise.api_host** URL vers l'API des vulnérabilités sans le slash initial. Par défaut, https://vulners.com
 
