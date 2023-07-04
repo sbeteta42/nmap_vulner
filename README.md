@@ -5,8 +5,7 @@
 
 ## Description
 
-NSE script uses info about known services to provide data on vulnerabilities. Note that it is already included into the standard nmap NSE library.
-
+Le script NSE utilise des informations sur les services connus pour fournir des données sur les vulnérabilités. Notez qu'il est déjà inclus dans la bibliothèque standard nmap NSE.
 ![Result example](example.png)
 
 ## Dependencies:
@@ -16,23 +15,20 @@ NSE script uses info about known services to provide data on vulnerabilities. No
         string
     http-vulners-regex
 
-Keep in mind that the script depends on having information about software versions, so it only works with -sV flag.
+Gardez à l'esprit que le script dépend de la disponibilité d'informations sur les versions du logiciel, il ne fonctionne donc qu'avec l'indicateur -sV.
 
-**NB:** Now it can actually be run without -sV flag if http-vulners-regex script is run as well.
+**NB:** Désormais, il peut être exécuté sans l'indicateur -sV si le script http-vulners-regex est également exécuté.
 
 ## Installation
-    locate where your nmap scripts are located on your system
-        for *nix system it might be  ~/.nmap/scripts/ or $NMAPDIR
-        for Mac it might be /usr/local/Cellar/nmap/<version>/share/nmap/scripts/
-        for Windows it might be C:\Program Files (x86)\Nmap\scripts
-    copy the provided script (vulners.nse) into that directory
-    run *nmap --script-updatedb* to update the nmap script DB 
-
+    localiser où se trouvent vos scripts nmap sur votre système
+         pour le système *nix, il peut s'agir de ~/.nmap/scripts/ ou $NMAPDIR
+         pour Mac, cela pourrait être /usr/local/Cellar/nmap/<version>/share/nmap/scripts/
+         pour Windows, il peut s'agir de C:\Program Files (x86)\Nmap\scripts
+     copiez le script fourni (vulners.nse) dans ce répertoire
+     exécutez *nmap --script-updatedb* pour mettre à jour la base de données de script nmap
 ## Usage
-    Use it as straightforward as you can:
-        nmap -sV --script vulners [--script-args mincvss=<arg_val>] <target>
-        
-It is KISS after all.
+  Utilisez-le aussi simplement que possible :
+         nmap -sV --script vulners [--script-args mincvss=<val_arg>] <cible>
 
 # http-vulners-regex
 
